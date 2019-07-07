@@ -10,13 +10,47 @@
 <body>
 	<div class="wrapper">
 			<h1>Forth Engine</h1>
+
 			<p>Forth Engine is an open-source C++ Engine to render and manipulate high, four dimensional objects into three dimensional objects that can be rendered via ordinary graphics renderer, like OpenGL.</p>
-			<img src="images/preview.gif" alt="Preview" title="Rotating Hexacosidedroid">
+
+			<canvas class=emscripten id=canvas tabindex=-1></canvas>
+
+			<noscript><img src="images/preview.gif" alt="Preview" title="Rotating Hexacosidedroid"></noscript>
+
 			<p>Forth Engine is a successor to <a href="https://assetstore.unity.com/packages/tools/modeling/engine-4-34475">Engine4</a>, and currently it's in main development phase.</p>
 			<p>Links:</p>
 			<a href="https://github.com/forth-engine/forth-library">Forth Library</a>
 			<br>
-			<a href="https://github.com/forth-engine/demo">Executable Demo</a>
+			<a href="https://github.com/forth-engine/demo">Executable Demos</a>
+			<ul>
+				<li><a href="https://wellosoft.net/demo/forth/primitiveDemo.html">primitiveDemo</a></li>
+				<li><a href="https://wellosoft.net/demo/forth/frustumDemo.html">frustumDemo</a></li>
+				<li><a href="https://wellosoft.net/demo/forth/thirdPersonViewDemo.html">thirdPersonViewDemo</a></li>
+				<li><a href="https://wellosoft.net/demo/forth/physicsDemo.html">physicsDemo</a></li>
+			</ul>
+
+			<script>
+				var Module = {
+						preRun: [],
+						postRun: [],
+						locateFile: function(path, prefix) {
+							return "https://wellosoft.net/demo/forth/" + path;
+						},
+						canvas: function () {
+							var e = document.getElementById("canvas");
+							return e.addEventListener("webglcontextlost", function (e) {
+								alert("WebGL context lost. You will need to reload the page."), e.preventDefault()
+							}, !1), e
+						}(),
+						onRuntimeInitialized: function() {
+							setTimeout(function() {
+								GLFW.onKeydown({keyCode: 54});
+								document.getElementById("canvas").exitPointerLock();
+							}, 500);
+						}
+					};
+			</script>
+			<script async src="https://wellosoft.net/demo/forth/primitiveDemo.js"></script>
 	</div>
 </body>
 </html>

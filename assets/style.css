@@ -15,3 +15,18 @@ body {
 	margin: auto;
 	padding: 1em;
 }
+
+#canvas {
+	pointer-events: none;
+}
+
+ul {
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+}
+
+li a {
+	display: inline-block;
+	padding: 10px;
+}
