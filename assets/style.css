@@ -1,3 +1,5 @@
+@import url("//cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css");
+
 * {
 	box-sizing: border-box;
 }
@@ -24,9 +26,23 @@ ul {
 	list-style-type: none;
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 li a {
-	display: inline-block;
+	display: block;
 	padding: 10px;
 }
+
+.shape-selectors {
+	display: flex;
+	justify-content: center;
+}
+
+.shape-selectors button {
+	display: block;
+	padding: 0.5em;
+	background: white;
+}
+

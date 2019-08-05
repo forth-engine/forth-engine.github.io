@@ -8,14 +8,33 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
 </head>
 <body>
-	<div class="wrapper">
+	<div class="wrapper" id="wrapper">
 			<h1>Forth Engine</h1>
 
 			<p>Forth Engine is an open-source C++ Engine to render and manipulate high, four dimensional objects into three dimensional objects that can be rendered via ordinary graphics renderer, like OpenGL.</p>
 
 			<canvas class=emscripten id=canvas tabindex=-1></canvas>
 
-			<noscript><img src="images/preview.gif" alt="Preview" title="Rotating Hexacosidedroid"></noscript>
+			<p class="shape-selectors">
+				<button onclick="sendKey(49)" data-balloon-pos="up" data-balloon="Pentatope">1</button>
+				<button onclick="sendKey(50)" data-balloon-pos="up" data-balloon="Tesseract">2</button>
+				<button onclick="sendKey(51)" data-balloon-pos="up" data-balloon="Hexdecahedroid">3</button>
+				<button onclick="sendKey(52)" data-balloon-pos="up" data-balloon="Icosatetrahedroid">4</button>
+				<button onclick="sendKey(53)" data-balloon-pos="up" data-balloon="Hecatonicosahedroid">5</button>
+				<button onclick="sendKey(54)" data-balloon-pos="up" data-balloon="Hexacosidedroid">6</button>
+				<button onclick="sendKey(55)" data-balloon-pos="up" data-balloon="Hypersphere">7</button>
+				<button onclick="sendKey(56)" data-balloon-pos="up" data-balloon="Rounded Tesseract">8</button>
+				<button onclick="sendKey(57)" data-balloon-pos="up" data-balloon="Custom Shape">9</button>
+			</p>
+
+			<noscript>
+				<img src="images/preview.gif" alt="Preview" title="Rotating Hexacosidedroid">
+				<style>
+				.shape-selectors, .emscripten {
+					display: none;
+				}
+				</style>
+			</noscript>
 
 			<p>Forth Engine is a successor to <a href="https://assetstore.unity.com/packages/tools/modeling/engine-4-34475">Engine4</a>, and currently it's in main development phase.</p>
 			<p>Links:</p>
@@ -46,9 +65,17 @@
 							setTimeout(function() {
 								GLFW.onKeydown({keyCode: 54});
 								document.getElementById("canvas").exitPointerLock();
+								var w = document.getElementById('wrapper').clientWidth;
+								if (w < 800) {
+									Module.setCanvasSize(w, w * 3 / 4);
+								}
 							}, 500);
 						}
 					};
+
+					function sendKey(code) {
+						GLFW.onKeydown({keyCode: code});
+					}
 			</script>
 			<script async src="https://wellosoft.net/demo/forth/primitiveDemo.js"></script>
 	</div>
